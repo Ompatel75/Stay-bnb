@@ -1,4 +1,3 @@
-
 -- STAYBNB - DATA
 
 SET search_path TO staybnb;
