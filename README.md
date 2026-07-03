@@ -25,22 +25,18 @@
       <td align="center" width="25%">
         <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Om&backgroundColor=ffdf00" width="80px" style="border-radius: 50%;" /><br />
         <br /><b>Om Patel</b><br />
-        <sub>Lead DB Architect</sub>
       </td>
       <td align="center" width="25%">
         <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Shyam&backgroundColor=3a86c8" width="80px" style="border-radius: 50%;" /><br />
         <br /><b>Shyam Ramani</b><br />
-        <sub>DDL Engineer</sub>
       </td>
       <td align="center" width="25%">
         <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Ramit&backgroundColor=70b14c" width="80px" style="border-radius: 50%;" /><br />
         <br /><b>Ramit Sherasiya</b><br />
-        <sub>Mock Data Dev</sub>
       </td>
       <td align="center" width="25%">
         <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Rahi&backgroundColor=e05d93" width="80px" style="border-radius: 50%;" /><br />
         <br /><b>Rahi Narodiya</b><br />
-        <sub>Query Developer</sub>
       </td>
     </tr>
   </table>
