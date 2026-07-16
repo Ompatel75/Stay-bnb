@@ -155,46 +155,5 @@ erDiagram
    psql -U postgres -d your_database_name -f "SQL Queries.txt"
    ```
 
----
-
-## 📊 Analytical Query Showcases
-
-### 1. Net Host Earnings (Revenue minus Refunded Cancellations)
-Calculates host revenue from invoices and subtracts the refund amounts of approved cancellations.
-```sql
-WITH earnings AS (
-    SELECT h.Host_ID, SUM(inv.Amount) AS BookingsEarnings
-    FROM Host AS h
-    INNER JOIN Property AS p ON p.Host_ID = h.Host_ID
-    INNER JOIN Bookings AS b ON b.Property_ID = p.Property_ID
-    INNER JOIN Booking_Invoice AS inv ON b.Booking_ID = inv.Booking_ID
-    GROUP BY h.Host_ID
-),
-refund AS (
-    SELECT h.Host_ID, SUM(can.Refund_Amount) AS Cancellation_Refund
-    FROM Host AS h
-    INNER JOIN Property AS p ON p.Host_ID = h.Host_ID
-    INNER JOIN Bookings AS b ON b.Property_ID = p.Property_ID
-    INNER JOIN Booking_Invoice AS inv ON b.Booking_ID = inv.Booking_ID
-    INNER JOIN Booking_Cancellation AS can ON inv.Booking_ID = b.Booking_ID
-    WHERE can.Refund_Status = 'Refunded'
-    GROUP BY h.Host_ID
-)
-SELECT e.Host_ID, e.BookingsEarnings - COALESCE(r.Cancellation_Refund, 0) AS Net_Earnings
-FROM earnings AS e
-LEFT JOIN refund AS r ON e.Host_ID = r.Host_ID;
-```
-
-### 2. Category Booking Volumes
-Queries which lodging categories are most booked by guests:
-```sql
-SELECT pc.Category_ID, pc.Category_Name, COUNT(b.Booking_ID) AS Booking_Count
-FROM Property_Category AS pc
-INNER JOIN Property AS p ON pc.Category_ID = p.Category_ID
-INNER JOIN Bookings AS b ON p.Property_ID = b.Property_ID
-GROUP BY pc.Category_ID, pc.Category_Name
-ORDER BY Booking_Count DESC;
-```
-
 > [!TIP]
 > Make sure your PostgreSQL server connection path matches the search path variable configured in the SQL files (`SET search_path TO staybnb;`).
